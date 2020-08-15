@@ -1809,7 +1809,9 @@ REMAP is specified as nil (it is true by default)."
                unread-command-events))))
     (when command
       (let ((this-command command))
-        (general--call-interactively command remap)))
+        (run-hooks 'pre-command-hook)
+        (general--call-interactively command remap)
+        (run-hooks 'post-command-hook)))
     (setq general--last-simulated-command command)))
 
 ;;;###autoload
